@@ -1,5 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
+
+console.log(process.env.NODE_ENV == 'dev');
+
+
 import router from './router'
 import store from './store'
 import ViewUI from 'view-design';
