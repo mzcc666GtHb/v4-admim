@@ -21,10 +21,12 @@
         name: 'home',
         created() {
             this.$axios('book/book1',{
-                name:'121',
-                id:'123'
+                start:3,
+                count:30
             }).then(res=>{
                 console.log(res);
+            }).catch(err=>{
+                console.log(err);
             })
         },
         components: {}

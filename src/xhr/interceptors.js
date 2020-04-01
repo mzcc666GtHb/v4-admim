@@ -4,17 +4,25 @@ const requestSuccess = (config) => {
     console.log(config);
     return config;
 }
-const requestFail = (error) => {
+const requestFail = (result) => {
     // 请求前失败逻辑，断网，请求发送监控等
-    return Promise.reject(error);
+    return Promise.reject(result);
 }
 
 const responseSuccess = (result) => {
+    console.log(result);
     return  Promise.resolve(result);
 }
 
-const responseFail = (error) => {
-    return Promise.reject(error);
+const responseFail = (result) => {
+    console.log('result',result);
+    // const {status} = result;
+    // switch (status) {
+    //     case 404 :
+    //     case 403 :
+    //         break;
+    // }
+    return Promise.reject(result);
 }
 
 export default  {

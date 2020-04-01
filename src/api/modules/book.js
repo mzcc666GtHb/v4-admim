@@ -1,7 +1,7 @@
 export default  [
     {
         name: 'book1',
-        method: 'GET',
+        method: 'POST',
         path: '/api/movie/top250'
     }
 ]
