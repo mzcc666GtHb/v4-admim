@@ -20,7 +20,7 @@
     export default {
         name: 'home',
         created() {
-            this.$axios('book/book1',{
+            this.$xhr('book/book1',{
                 start:3,
                 count:30
             }).then(res=>{

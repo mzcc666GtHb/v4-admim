@@ -16,19 +16,19 @@ axiosInstance.interceptors.response.use(interceptors.responseSuccess, intercepto
  * @param params 用户传向后端传递的参数对象形式;
  * @returns {*}  返回axiosInstance的调用结果;
  */
-const apiFac = (url = '', params = {}) => {
-    const [apiName,pathParams] = url.split(':');
+export const xhr = (url = '', params = {}) => {
+    const [apiName, pathParams] = url.split(':');
     const [api, ...rest] = apis.filter(item => item.name.trim() === apiName.trim());
-    if(!api) {
+    if (!api) {
         return Promise.reject(`${url} dose not exist in api modules.`);
     }
-    if(rest.length) {
+    if (rest.length) {
         return Promise.reject(`${url} is not unique.`);
     }
-    api.url = api.path + (pathParams? '/' + pathParams.trim() : '');
-    return axiosInstance(normoalizeParams(api,params));
+    api.url = api.path + (pathParams ? '/' + pathParams.trim() : '');
+    return axiosInstance(normoalizeParams(api, params));
 }
-const normoalizeParams = (api, data) =>{
+const normoalizeParams = (api, data) => {
     switch (api.method) {
         case 'POST':
         case 'PUT':
@@ -40,8 +40,9 @@ const normoalizeParams = (api, data) =>{
     }
     return api;
 }
+
 export default {
     install(Vue) {
-        Vue.prototype.$axios =  apiFac;
+        Vue.prototype.$xhr = xhr;
     }
 }
