@@ -1,6 +1,7 @@
 import {Message} from 'view-design';
 
 const requestSuccess = (config) => {
+    console.log(config);
     return config;
 }
 const requestFail = (result) => {
@@ -32,7 +33,7 @@ const responseFail = ( err) => {
     } else {
         err.message = '连接服务器失败!'
     }
-    Message.warning(err.message)
+    Message.error(err.message)
     return Promise.reject(err);
 }
 

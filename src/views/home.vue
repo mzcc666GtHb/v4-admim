@@ -3,13 +3,9 @@
         <div>
             <ul class="router-list">
                 <li>
-                    <router-link to="/drag">drag</router-link>
-                </li>
-                <li>
-                    <router-link to="/tree">tree</router-link>
-                </li>
-                <li>
-                    <router-link to="/about">about111</router-link>
+                    <MdTab></MdTab>
+                    <MdPage></MdPage>
+                    <router-link to="/about"></router-link>
                 </li>
             </ul>
         </div>

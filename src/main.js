@@ -11,10 +11,12 @@ import router from './router';
 import Xhr from './xhr';
 Vue.use(Xhr);
 
+import '@/components';
+
+
+
 //生产环境阻止vue提示;
 Vue.config.productionTip = false;
-
-
 new Vue({
     router,
     store,
