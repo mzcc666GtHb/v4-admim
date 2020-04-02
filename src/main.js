@@ -11,7 +11,10 @@ import router from './router';
 import Xhr from './xhr';
 Vue.use(Xhr);
 
-import '@/components';
+import './components';
+import './filters';
+import './mixins';
+import './directives';
 
 
 
