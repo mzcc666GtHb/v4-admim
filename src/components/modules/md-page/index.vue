@@ -1,6 +1,6 @@
 <template>
     <div>
-        分页组件
+        1
     </div>
 </template>
 
