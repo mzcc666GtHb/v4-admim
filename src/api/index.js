@@ -1,10 +1,10 @@
-const rcfn = require.context('./modules', true, /\.js$/);
-const modulesKeys = rcfn.keys();
+const importAll = require.context('./modules', true, /\.js$/);
+const modulesKeys = importAll.keys();
 let apis = [];
 modulesKeys.map(item =>{
     const fileName=item.replace(/.*\//,'');
     const namespace = fileName.substring(0,fileName.lastIndexOf('.'));
-    const modulesValues =  rcfn(item).default || [];
+    const modulesValues =  importAll(item).default || [];
     modulesValues.forEach(el=>{
         el.name = `${namespace}/${el.name}`;
     });

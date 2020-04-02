@@ -1,46 +1,21 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import config from './config';
+import {routerBeforeEach,routerAfterEach} from './interceptors';
+Vue.use(VueRouter);
 
-Vue.use(VueRouter)
+const importAll = require.context('./modules', true, /\.js$/);
+const routes = [];
+importAll.keys().map(item=> {
+    const  routeModule =  importAll(item).default;
+    routes.push(...routeModule);
+});
+const routerInstance = new VueRouter({
+    routes,
+    ...config
+});
+// 拦截器
+routerInstance.beforeEach(routerBeforeEach);
+routerInstance.afterEach(routerAfterEach);
 
-const routes = [
-    {
-        path: '/',
-        name: 'home',
-        component: () => import(/* webpackChunkName: "about" */ '../views/home.vue')
-    },
-    {
-        path: '/about',
-        name: 'about',
-        component: () => import(/* webpackChunkName: "about" */ '../views/about.vue')
-    },
-    {
-        path: '/drag',
-        name: 'drag',
-        component: () => import(/* webpackChunkName: "about" */ '../views/drag.vue')
-    },
-    {
-        path: '/tree',
-        name: 'tree',
-        component: () => import(/* webpackChunkName: "about" */ '../views/tree.vue')
-    },
-    {
-        path: '/sort',
-        name: 'sort',
-        component: () => import(/* webpackChunkName: "about" */ '../views/sort.vue')
-    },
-    {
-        path: '/goods',
-        name: 'goods',
-        meta: {
-            keepAlive: true
-        },
-        component: () => import(/* webpackChunkName: "about" */ '../views/goods.vue')
-    }
-]
-
-const router = new VueRouter({
-    routes
-})
-
-export default router
+export default routerInstance;

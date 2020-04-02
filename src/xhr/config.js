@@ -1,4 +1,4 @@
 export  default  {
     baseURL:'',
-    timeout:20000
+    timeout:1000
 }

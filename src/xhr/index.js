@@ -42,6 +42,6 @@ const normoalizeParams = (api, data) =>{
 }
 export default {
     install(Vue) {
-        Vue.prototype.$axios =  apiFac
+        Vue.prototype.$axios =  apiFac;
     }
 }
