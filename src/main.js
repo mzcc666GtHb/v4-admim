@@ -8,15 +8,14 @@ Vue.use(ViewUI);
 import store from './store';
 import router from './router';
 
-import Xhr from './xhr';
-Vue.use(Xhr);
+import request from './api-request';
+Vue.use(request);
 
 import './components';
 import './filters';
 import './mixins';
 import './directives';
-
-
+import './utils';
 
 //生产环境阻止vue提示;
 Vue.config.productionTip = false;

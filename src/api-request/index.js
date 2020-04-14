@@ -16,7 +16,7 @@ axiosInstance.interceptors.response.use(interceptors.responseSuccess, intercepto
  * @param params 用户传向后端传递的参数对象形式;
  * @returns {*}  返回axiosInstance的调用结果;
  */
-export const xhr = (url = '', params = {}) => {
+export const request = (url = '', params = {}) => {
     const [apiName, pathParams] = url.split(':');
     const [api, ...rest] = apis.filter(item => item.name.trim() === apiName.trim());
     if (!api) {
@@ -43,6 +43,6 @@ const normoalizeParams = (api, data) => {
 
 export default {
     install(Vue) {
-        Vue.prototype.$xhr = xhr;
+        Vue.prototype.$request = request;
     }
 }

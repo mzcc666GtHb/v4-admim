@@ -5,19 +5,18 @@
  */
 
 import Vue from  'vue';
-import _ from 'lodash';
+import {upperFirst,camelCase} from 'lodash';
 const importAll = require.context('./modules', true, /index\.vue$/);
 
 // 遍历获取到的文件名，依次进行全局注册
 importAll.keys().map(filePath => {
     const pathLevel = filePath.split('/').length || 0;
+    //只加载当前文件下面一层的组件
     if(pathLevel === 3) {
         const componentConfig = importAll(filePath);
-        const componentName = _.upperFirst(_.camelCase(filePath.replace(/^\.*\/(.*)index\.vue$/, '$1')));
+        const componentName = upperFirst(camelCase(filePath.replace(/^\.*\/(.*)index\.vue$/, '$1')));
         // 全局注册组件
         Vue.component(componentName, componentConfig.default || componentConfig)
-    }else{
-        console.error('');
     }
 
 })

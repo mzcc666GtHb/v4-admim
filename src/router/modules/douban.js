@@ -5,11 +5,11 @@ export  default  [
     {
         path: '/',
         name: 'home',
-        component: () => import('@/views/home.vue')
+        component: () => import(/* webpackChunkName:'douban' */ '@/views/douban/home.vue')
     },
     {
         path: '/about',
         name: 'about',
-        component: () => import('@/views/about.vue')
+        component: () => import(/* webpackChunkName:'douban' */ '@/views/douban/about.vue')
     }
 ]

@@ -5,12 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        'goodsNum': 1,
+        'goodsNum': 0,
     },
     mutations: {
-        increment(state) {
+        increment(state,num) {
             // 变更状态
-            state.goodsNum++
+            state.goodsNum += num;
         }
     },
     actions: {},

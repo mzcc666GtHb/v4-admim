@@ -1,11 +1,9 @@
 import {Message} from 'view-design';
 
 const requestSuccess = (config) => {
-    console.log(config);
     return config;
 }
 const requestFail = (result) => {
-    console.log('response',result.response);
     return Promise.reject(result);
 }
 
