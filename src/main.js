@@ -17,7 +17,6 @@ import './mixins';
 import './directives';
 import './utils';
 
-//生产环境阻止vue提示;
 Vue.config.productionTip = false;
 new Vue({
     router,
