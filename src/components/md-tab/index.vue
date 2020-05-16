@@ -1,12 +1,12 @@
 <template>
     <div>
-        11
+        md-tab组件
     </div>
 </template>
 
 <script>
     export default {
-        name: "detail"
+        name: "index"
     }
 </script>
 

@@ -1,5 +1,5 @@
-const importAll = require.context('./modules', true, /\.js$/);
-const modulesKeys = importAll.keys();
+const importAll = require.context('./', true, /\.js$/);
+const modulesKeys = importAll.keys().filter(item => item != './index.js');
 const apis = [];
 modulesKeys.map(item =>{
     const fileName=item.replace(/.*\//,'');
@@ -10,5 +10,4 @@ modulesKeys.map(item =>{
     });
     apis.push(...modulesValues);
 });
-
 export default  apis;

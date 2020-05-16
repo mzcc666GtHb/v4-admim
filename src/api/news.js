@@ -1,11 +1,11 @@
 export default  [
     {
-        name:'n1',
+        name:'newsList',
         method:'GET',
         path:'/sdf/sdfsdf'
     },
     {
-        name:'n1111',
+        name:'newsList',
         method:'GET',
         path:'/sdf/sdfsdf'
     }

@@ -8,9 +8,6 @@
                 </dd>
                 <br>
                 <br>
-                <dd>
-                    <MdPage></MdPage>
-                </dd>
                 <dt>路由</dt>
                 <dd>
                     <router-link tag="div" to="/about">关于</router-link>
@@ -22,8 +19,8 @@
                     <router-link tag="div" to="/goods/list">列表</router-link>
                 </dd>
                 <dt>过滤器</dt>
-                <dd><span>{{name | placeholder('非常好呢')}}</span></dd>
-                <img :src="imgSrc" alt="">
+                <dd><span>{{name | placeholder('过滤器')}}</span></dd>
+<!--                <img :src="imgSrc" alt="" width="200">-->
             </dl>
         </div>
     </div>

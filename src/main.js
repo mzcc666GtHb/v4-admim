@@ -14,7 +14,6 @@ Vue.use(request);
 import './components';
 import './filters';
 import './mixins';
-import './directives';
 import './utils';
 
 Vue.config.productionTip = false;
