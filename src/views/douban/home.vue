@@ -7,6 +7,9 @@
                     <MdTab></MdTab>
                 </dd>
                 <br>
+                <dd>
+                    <MdForm></MdForm>
+                </dd>
                 <br>
                 <dt>路由</dt>
                 <dd>
@@ -46,14 +49,6 @@
                     alert('出错了');
                 }
             });
-            this.$request('book/book1', {
-                start: 3,
-                count: 30
-            }).then(res => {
-                console.log(res);
-            }).catch(err => {
-                console.log(err);
-            })
         }
     }
 </script>
