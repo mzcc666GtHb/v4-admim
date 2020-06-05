@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import {camelCase} from 'lodash';
 
-const importAll = require.context('./modules', true, /\.js$/);
+const importAll = require.context('./', true, /\.js$/);
 const mixins = {};
-const globalMixins = ['page'];
+const globalMixins = [];
 
-importAll.keys().map(filePath => {
+importAll.keys().filter(item => item !== './index.js').map(filePath => {
     const mixinConfig = importAll(filePath).default;
     const mixinName = camelCase(filePath.replace(/^\.*\/(.*).js$/, '$1'));
     mixins[mixinName] = mixinConfig;
@@ -16,4 +16,5 @@ Object.keys(mixins).map(key =>{
         Vue.mixin(mixins[key]);
     }
 });
+console.log('mixins', mixins);
 export default mixins;

@@ -1,82 +1,50 @@
 <template>
-    <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
-        <FormItem label="姓名" prop="name">
-            <Input v-model="formValidate.name" placeholder="请输入姓名"/>
-        </FormItem>
-        <FormItem label="邮箱" prop="mail">
-            <Input v-model="formValidate.mail" placeholder="请输入邮箱"/>
-        </FormItem>
-        <FormItem label="密码" prop="password">
-            <Input v-model="formValidate.mail" placeholder="请输入密码"/>
-        </FormItem>
-        <FormItem>
-            <Button type="primary" @click="handleSubmit('formValidate')">Submit</Button>
-            <Button @click="handleReset('formValidate')" style="margin-left: 8px">Reset</Button>
-        </FormItem>
-    </Form>
+    <div class="register-wrap">
+        <div class="register-box">
+            <Form ref="formValidate" :model="formValidate" :rules="validators" :label-width="80">
+                <FormItem label="姓名" prop="user_name">
+                    <Input v-model="formValidate.user_name" placeholder="请输入姓名"/>
+                </FormItem>
+                <FormItem label="邮箱" prop="user_email">
+                    <Input v-model="formValidate.user_email" placeholder="请输入邮箱"/>
+                </FormItem>
+                <FormItem label="密码" prop="user_password">
+                    <Input type="password" v-model="formValidate.user_password" placeholder="请输入密码"/>
+                </FormItem>
+                <FormItem>
+                    <Button type="primary" @click="handleSubmit('formValidate')">注册</Button>
+                </FormItem>
+            </Form>
+        </div>
+    </div>
 </template>
 <script>
+    import mixins from "../../mixins";
     export default {
         data () {
             return {
                 formValidate: {
-                    name: '',
-                    mail: '',
-                    city: '',
-                    gender: '',
-                    interest: [],
-                    date: '',
-                    time: '',
-                    desc: ''
-                }
+                    user_name: '',
+                    user_email: '',
+                    user_password:''
+                },
+                registerValidators:{}
             }
         },
+        mixins:[mixins.asyncValidators],
         mounted() {
-        },
-        computed: {
-            ruleValidate () {
-                const validates = {
-                    name: [
-                        { required: true, trigger: 'blur',validator:this.validatorName }
-                    ],
-                    mail: [
-                        { required: true, message: 'Mailbox cannot be empty', trigger: 'blur' },
-                        { type: 'email', message: 'Incorrect email format', trigger: 'blur' }
-                    ],
-                    city: [
-                        { required: true, message: 'Please select the city', trigger: 'change' }
-                    ],
-                    gender: [
-                        { required: true, message: 'Please select gender', trigger: 'change' }
-                    ],
-                    interest: [
-                        { required: true, type: 'array', min: 1, message: 'Choose at least one hobby', trigger: 'change' },
-                        { type: 'array', max: 2, message: 'Choose two hobbies at best', trigger: 'change' }
-                    ],
-                    date: [
-                        { required: true, type: 'date', message: 'Please select the date', trigger: 'change' }
-                    ],
-                    time: [
-                        { required: true, type: 'string', message: 'Please select time', trigger: 'change' }
-                    ],
-                    desc: [
-                        { required: true, message: 'Please enter a personal introduction', trigger: 'blur' },
-                        { type: 'string', min: 20, message: 'Introduce no less than 20 words', trigger: 'blur' }
-                    ]
-                }
-                validates.gender = [
-                    { required: true, trigger: 'blur' }
-                ]
-                return validates
-            }
         },
         methods: {
             handleSubmit (name) {
                 console.log(this.$refs[name]);
-                this.$refs[name].validate((valid) => {
+                this.$refs[name].validate(async (valid) => {
                     if (valid) {
-                        this.$Message.success('Success!');
-                        this.register()
+                        const  {data} = await  this.register(this.formValidate);
+                        if(data.success) {
+                            this.$Message.success('注册成功');
+                        }else{
+                            this.$Message.info(data.msg);
+                        }
                     } else {
                         this.$Message.error('Fail!');
                     }
@@ -88,14 +56,33 @@
             changeCity(data) {
                 console.log(data);
             },
-            validatorName(rule, value, callback) {
-                value ? callback() :  callback(new Error('error'));
-            },
-            register(params) {
-                this.$request('users/register',params).then(res => {
-                    console.log(res);
+            async register(params) {
+                return this.$request('users/register',params).then(res => {
+                    return res;
                 })
             }
         }
     }
 </script>
+<style>
+    html,body{
+        width: 100%;
+        height: 100%;
+    }
+    body{
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+</style>
+<style scoped>
+    .register-wrap{
+        margin-top: 50px;
+        padding: 20px 50px 0 20px;
+    }
+    .register-box{
+        width: 400px;
+        padding: 60px 30px 20px 10px;
+        border: 1px solid #ddd;
+    }
+</style>

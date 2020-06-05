@@ -16,7 +16,6 @@ importAll.keys().map(filePath => {
     if(pathLevel === 3) {
         const componentConfig = importAll(filePath);
         const componentName = upperFirst(camelCase(filePath.replace(/^\.*\/(.*)index\.vue$/, '$1')));
-        console.log(componentName);
         // 全局注册组件
         Vue.component(componentName, componentConfig.default || componentConfig)
     }
