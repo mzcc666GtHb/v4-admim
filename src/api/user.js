@@ -1,0 +1,22 @@
+export  default [
+    {
+        name:'login',
+        method:'POST',
+        path:'/api/user/login'
+    },
+    {
+        name:'register',
+        method:'POST',
+        path:'/api/user/register'
+    },
+    {
+        name:'list',
+        method:'GET',
+        path:'/api/user/list'
+    },
+    {
+        name:'detail',
+        method:'GET',
+        path:'/api/user/detail'
+    },
+]

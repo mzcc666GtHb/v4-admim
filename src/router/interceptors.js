@@ -1,7 +1,14 @@
-import {LoadingBar} from 'view-design'
+import {LoadingBar} from 'view-design';
+import util from  '../utils';
+
 export const  routerBeforeEach = (to,from,next) =>{
     LoadingBar.start();
-    to.meta.title && (document.title = to.meta.title);
+    try {
+        to.meta.title ? (document.title = to.meta.title) : (document.title = '');
+        to.meta.bodyBackgroundImg ? util.setBodyBackgroundImg(to.meta.bodyBackgroundImg) : util.setBodyBackgroundImg();
+    } catch (e) {
+        console.log(e);
+    }
     next();
 }
 

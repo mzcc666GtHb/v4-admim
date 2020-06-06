@@ -1,3 +1,4 @@
+import plugins from "./plugins";
 export default {
     /**
      * 检测图片是否已经加载完成
@@ -18,6 +19,11 @@ export default {
                 img = null;
             }
         })
+    },
+    setBodyBackgroundImg (imgSrc = '') {
+        document.body.style.backgroundImage = `url("${imgSrc}")`;
+    },
+    getToken() {
+        return  plugins.storage.get('token');
     }
-
 }

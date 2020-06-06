@@ -16,5 +16,4 @@ Object.keys(mixins).map(key =>{
         Vue.mixin(mixins[key]);
     }
 });
-console.log('mixins', mixins);
 export default mixins;

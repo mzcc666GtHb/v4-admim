@@ -24,17 +24,20 @@
                 imgSrc:''
             }
         },
+        created() {
+            this.getUserDetail();
+        },
         methods: {
             edit() {
                 // 修改了头像
                 if (this.$refs.avatarInput.files.length !== 0) {
                     const image = new FormData();
                     image.append('files', this.$refs.avatarInput.files[0]);
-                    axios.post(this.baseURL + '/api/file/upload',image,{
+                    axios.post(this.baseURL + '/api/file/upload', image, {
                         headers: {
                             "Content-Type": "multipart/form-data"
                         }
-                    }).then(res=>{
+                    }).then(res => {
                         this.imgSrc = res.data.data.src;
                     })
                 }
@@ -51,6 +54,10 @@
                     that.avatar = this.result;
                     that.edit();
                 }
+            },
+            async getUserDetail() {
+                const {data} = await this.$request('user/detail');
+                console.log(data);
             }
         }
     }

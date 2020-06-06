@@ -1,4 +1,3 @@
-import  utils from '../utils'
 export default  {
     data () {
         return {
@@ -7,7 +6,7 @@ export default  {
                     { required: true, trigger: 'blur',message:'请填写用户名'}
                 ],
                 user_password: [
-                    { required: true, trigger: 'blur',message:'请输入密码'}
+                    { required: true, trigger: 'blur',message:'请输入密码且不得小于6位',  min: 6}
                 ],
                 user_email: [
                     { required: true, message: '邮箱不能为空', trigger: 'blur' },

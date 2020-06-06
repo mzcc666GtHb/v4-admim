@@ -1,6 +1,12 @@
 import {Message} from 'view-design';
-
+import utils from '../utils';
 const requestSuccess = (config) => {
+    try {
+        utils.getToken() && (config.headers.token = utils.getToken());
+    }catch (e) {
+        console.log(e);
+    }
+
     return config;
 }
 const requestFail = (result) => {
