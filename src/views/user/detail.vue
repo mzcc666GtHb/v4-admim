@@ -5,7 +5,7 @@
                 <div class="avatar-box">
                     <div class="avatar" :style="{backgroundImage:`url(${avatar})`}">
                     </div>
-                    <input type="file" name="avatar" accept="image/gif,image/jpeg,image/jpg,image/png"
+                    <input type="file" name="avatar"
                            style="display:none" @change="changeImage($event)" ref="avatarInput">
                     <span class="edit-btn" @click="setAvatar">修改头像</span>
                 </div>
@@ -16,7 +16,6 @@
     </div>
 </template>
 <script>
-    import  axios from  'axios'
     export default {
         data() {
             return {
@@ -33,16 +32,13 @@
                 if (this.$refs.avatarInput.files.length !== 0) {
                     const image = new FormData();
                     image.append('files', this.$refs.avatarInput.files[0]);
-                    axios.post(this.baseURL + '/api/file/upload', image, {
-                        headers: {
-                            "Content-Type": "multipart/form-data"
-                        }
-                    }).then(res => {
+                    this.$request('file/upload',image).then(res=>{
                         this.imgSrc = res.data.data.src;
                     })
                 }
             },
             setAvatar() {
+                this.$refs.avatarInput.value = null;
                 this.$refs.avatarInput.click();
             },
             changeImage(e) {

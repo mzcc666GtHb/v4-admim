@@ -21,11 +21,17 @@ export  default  [
     {
         path: '/user/detail',
         name: 'userDetail',
-        component: () => import(/* webpackChunkName:'user' */ '@/views/user/detail.vue')
+        component: () => import(/* webpackChunkName:'user' */ '@/views/user/detail.vue'),
+        meta:{
+            isLogin:true
+        }
     },
     {
         path: '/user/list',
         name: 'userList',
-        component: () => import(/* webpackChunkName:'user' */ '@/views/user/list.vue')
+        component: () => import(/* webpackChunkName:'user' */ '@/views/user/list.vue'),
+        meta:{
+            isLogin:true
+        }
     }
 ]

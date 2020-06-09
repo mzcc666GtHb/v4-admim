@@ -35,7 +35,11 @@
         mixins:[mixins.asyncValidators],
         computed: {
           loginValidators () {
-             return  this.validators;
+              let loginValidators = Object.assign({},this.validators);
+              loginValidators.user_password = [
+                 { required: true, trigger: 'blur',message:'请输入密码'}
+             ];
+              return loginValidators;
           }
         },
         mounted() {
@@ -50,6 +54,11 @@
                             const token = data.data.token;
                             this.$storage.set('token', token);
                             this.$Message.success(data.msg);
+                            setTimeout(()=>{
+                                this.$router.push({
+                                    path:'/'
+                                })
+                            },1500)
                         }else{
                             this.$Message.error(data.msg);
                         }
